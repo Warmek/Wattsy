@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+from dotenv import load_dotenv
+
 import os
 
 #invite link: https://discord.com/api/oauth2/authorize?client_id=717745411594387625&permissions=8&scope=bot
@@ -13,7 +15,10 @@ from my_bullshit import my_bullshit
 
 client = commands.Bot(command_prefix="^^")
 
-TOKEN = 'NzE3NzQ1NDExNTk0Mzg3NjI1.XteygQ.ayHQvE7dGBwxYmWJamGX9GlAeXk'
+load_dotenv('.env')
+
+TOKEN = (os.getenv('TOKEN'))
+
 
 #remove the default help command so that we can write out own
 #client.remove_command('help')
