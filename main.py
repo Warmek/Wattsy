@@ -15,9 +15,12 @@ from my_bullshit import my_bullshit
 
 client = commands.Bot(command_prefix="^^")
 
-load_dotenv('.env')
+try:
+    load_dotenv('.env')
+    TOKEN = (os.getenv('TOKEN'))
+except:
+    input("Pass Token: ")
 
-TOKEN = (os.getenv('TOKEN'))
 
 
 #remove the default help command so that we can write out own
