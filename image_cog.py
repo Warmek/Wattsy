@@ -6,7 +6,7 @@ from google_images_download import google_images_download
 import random
 
 #responsible for handling all of the image commands
-class image_cog(commands.Cog):
+class Image(commands.Cog):
     def __init__(self, bot):
 
         self.bot = bot

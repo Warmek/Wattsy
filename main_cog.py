@@ -1,9 +1,8 @@
 import discord
 from discord.ext import commands
 
-import music_cog
 
-class main_cog(commands.Cog):
+class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.admin = 'Dr.Warmek#7292'
@@ -55,19 +54,13 @@ Music commands:
 
     @commands.command(name="say", help="Makes bot say things", pass_context=True)
     async def say(self, ctx, *, mg=None):
-        await commands.delete_message(ctx.message)
-
-        if not mg:
-            await self.bot.say("Please specify a message to send")
-        else:
-            await self.bot.say(mg)
-
-    @commands.command(name="speak", pass_context=True)
-    async def speak(self, ctx, *args):
         if (str(ctx.message.author) == self.admin):
-            await ctx.channel.purge(limit=1)
-            text = " ".join(args)
-            await ctx.send(text)
+            await commands.delete_message(ctx.message)
+
+            if not mg:
+                await self.bot.say("Please specify a message to send")
+            else:
+                await self.bot.say(mg)
         else:
             await ctx.send("<https://www.youtube.com/watch?v=dQw4w9WgXcQ>")
 

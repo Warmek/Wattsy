@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import requests
 
-class my_bullshit(commands.Cog):
+class Meme(commands.Cog):
     def __init__(self, client):
 
         self.client = client

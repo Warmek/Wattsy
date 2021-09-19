@@ -8,11 +8,11 @@ import os
 #invite link: https://discord.com/api/oauth2/authorize?client_id=717745411594387625&permissions=8&scope=bot
 
 #import all of the cogs
-from main_cog import main_cog
-from image_cog import image_cog
+from main_cog import General
+from image_cog import Image
 from music_cog import music_cog
 from music_cog_lavalink import Music
-from my_bullshit import my_bullshit
+from my_bullshit import Meme
 
 print("Setting up!")
 
@@ -33,10 +33,10 @@ except:
 #client.remove_command('help')
 
 #register the class with the bot
-client.add_cog(main_cog(client))
-client.add_cog(image_cog(client))
+client.add_cog(General(client))
+client.add_cog(Image(client))
 #client.add_cog(music_cog(client))
-client.add_cog(my_bullshit(client))
+client.add_cog(Meme(client))
 
 client.add_cog(Music(client))
 
