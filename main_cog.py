@@ -36,8 +36,7 @@ Music commands:
 
 
         await self.bot.change_presence(activity=discord.Game(name="Yo mama"))
-
-
+        print(self.bot.user.id)
         print("Bot ready")
 
     """

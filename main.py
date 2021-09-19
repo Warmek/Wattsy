@@ -11,7 +11,12 @@ import os
 from main_cog import main_cog
 from image_cog import image_cog
 from music_cog import music_cog
+from music_cog_lavalink import Music
 from my_bullshit import my_bullshit
+
+print("Setting up!")
+
+
 
 client = commands.Bot(command_prefix="^^")
 
@@ -19,7 +24,8 @@ try:
     load_dotenv('.env')
     TOKEN = (os.getenv('TOKEN'))
 except:
-    input("Pass Token: ")
+    print("Getting token form repl.it")
+    TOKEN = "$TOKEN"
 
 
 
@@ -29,8 +35,10 @@ except:
 #register the class with the bot
 client.add_cog(main_cog(client))
 client.add_cog(image_cog(client))
-client.add_cog(music_cog(client))
+#client.add_cog(music_cog(client))
 client.add_cog(my_bullshit(client))
+
+client.add_cog(Music(client))
 
 
 
