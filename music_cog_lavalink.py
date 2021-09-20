@@ -103,7 +103,7 @@ class Music(commands.Cog):
             guild = self.bot.get_guild(guild_id)
             await guild.change_voice_state(channel=None)
 
-    @commands.command(aliases=['p'])
+    @commands.command(name="play", aliases=['p'], help="Plays music")
     async def play(self, ctx, *, query: str):
         """ Searches and plays a song from a given query. """
         # Get the player for this guild from cache.
@@ -158,7 +158,7 @@ class Music(commands.Cog):
         if not player.is_playing:
             await player.play()
 
-    @commands.command(aliases=['dc'])
+    @commands.command(name="disconnect", aliases=['dc'], help="Disconnecting bot and clears queue")
     async def disconnect(self, ctx):
         """ Disconnects the player from the voice channel and clears its queue. """
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
@@ -181,7 +181,7 @@ class Music(commands.Cog):
         await ctx.guild.change_voice_state(channel=None)
         await ctx.send('*⃣ | Disconnected.')
 
-    @commands.command(aliases=['s'])
+    @commands.command(name="skip", aliases=['s'], help="Skips currently playing song")
     async def skip(self, ctx, *args : int):
         await ctx.send("Skipped")
         if(len(args) == 0):
@@ -196,7 +196,7 @@ class Music(commands.Cog):
 
 
 
-    @commands.command(aliases=['qe'])
+    @commands.command(name="queue", aliases=['qe'], help="Shows queue (25 song, you can pass number of page you want to see)")
     async def queue(self, ctx, *args : int):
         if (len(args) == 0):
             arg = 1
@@ -216,7 +216,7 @@ class Music(commands.Cog):
 
         await ctx.send(response)
 
-    @commands.command()
+    @commands.command(name="pause", help="Switching pause")
     async def pause(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
@@ -226,7 +226,7 @@ class Music(commands.Cog):
         await ctx.send("Paused = " + str(player.shuffle))
 
 
-    @commands.command(aliases=['sf'])
+    @commands.command(name="shuffle", aliases=['sf'],help="Shuffles queue")
     async def shuffle(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
@@ -234,20 +234,20 @@ class Music(commands.Cog):
 
         await ctx.send("Shuffle = " + str(player.shuffle))
 
-    @commands.command()
+    @commands.command(name="loop", help="Switches looping")
     async def loop(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
         player.repeat = not (player.repeat)
         await ctx.send("Loop = " + str(player.shuffle))
 
-    @commands.command()
+    @commands.command(name="current", help="show currently playing song")
     async def current(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
         await ctx.send("Curently playing: " + player.current)
 
-    @commands.command(aliases=['clr'])
+    @commands.command(name="clear", aliases=['clr'], help="clears queue")
     async def clear(self, ctx):
         await ctx.send("Cleared")
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)

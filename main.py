@@ -9,8 +9,6 @@ import os
 
 #import all of the cogs
 from main_cog import General
-from image_cog import Image
-from music_cog import music_cog
 from music_cog_lavalink import Music
 from my_bullshit import Meme
 
@@ -34,7 +32,7 @@ except:
 
 #register the class with the bot
 client.add_cog(General(client))
-client.add_cog(Image(client))
+#client.add_cog(Image(client))
 #client.add_cog(music_cog(client))
 client.add_cog(Meme(client))
 

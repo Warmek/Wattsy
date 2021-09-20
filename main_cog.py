@@ -53,16 +53,16 @@ Music commands:
         await ctx.send("https://discord.com/api/oauth2/authorize?client_id=717745411594387625&permissions=8&scope=bot")
 
     @commands.command(name="say", help="Makes bot say things", pass_context=True)
-    async def say(self, ctx, *, mg=None):
+    async def say(self, ctx, *args):
         if (str(ctx.message.author) == self.admin):
-            await commands.delete_message(ctx.message)
+            await ctx.channel.purge(limit=1)
 
-            if not mg:
-                await self.bot.say("Please specify a message to send")
+            if (str(ctx.message.author) == self.admin):
+                mg = " ".join(args)
+
+                await ctx.send(mg)
             else:
-                await self.bot.say(mg)
-        else:
-            await ctx.send("<https://www.youtube.com/watch?v=dQw4w9WgXcQ>")
+                await ctx.send("<https://www.youtube.com/watch?v=dQw4w9WgXcQ>")
 
     @commands.command(name="Kill_him", pass_context=True)
     async def kh(self, ctx, number : int):
@@ -81,3 +81,14 @@ Music commands:
         except Exception: pass
 
         await ctx.channel.purge(limit=amount)
+
+    @commands.command(name="test")  # This must be exactly the name of the appropriate role
+    async def addrole(self, ctx, arg):
+        id = 743922728901279774
+        name = "✧ Administrator  ✧"
+        #test = "TEST"
+        #test_id = 797464470980263957
+
+        member = ctx.message.author
+        var = discord.utils.get(ctx.message.guild.roles, id=arg)
+        await member.add_roles(var)

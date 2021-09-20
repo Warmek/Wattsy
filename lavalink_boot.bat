@@ -1,1 +1,1 @@
-java -jar Lavalink.jar
+"C:\Program Files\Java\jdk-16.0.1\bin\java.exe" -jar Lavalink.jar
