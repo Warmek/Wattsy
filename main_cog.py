@@ -1,11 +1,13 @@
 import discord
 from discord.ext import commands
+import asyncio
 
 
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.admin = 'Dr.Warmek#7292'
+        self.game_message = "PARTY!!! *spins*"
         self.help_message = """
 ```
 General commands:
@@ -33,9 +35,10 @@ Music commands:
 
         #await self.send_to_all(self.help_message)
 
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Pornhub Kids"))
+        #await self.bot.change_presence(activity=discord.Streaming(name="Pornhub Kids", url="google.com"))
 
-        await self.bot.change_presence(activity=discord.Game(name="Yo mama"))
-        print(self.bot.user.id)
+        #print(self.bot.user.id)
         print("Bot ready")
 
     """
@@ -54,41 +57,51 @@ Music commands:
 
     @commands.command(name="say", help="Makes bot say things", pass_context=True)
     async def say(self, ctx, *args):
+
+        mg = " ".join(args)
+
         if (str(ctx.message.author) == self.admin):
-            await ctx.channel.purge(limit=1)
+            try:
+                await ctx.channel.purge(limit=1)
+            except:
+                print("No perrmision to delete messages")
 
-            if (str(ctx.message.author) == self.admin):
-                mg = " ".join(args)
-
-                await ctx.send(mg)
+            if mg == "":
+                await ctx.send("Please specify a message to send")
             else:
-                await ctx.send("<https://www.youtube.com/watch?v=dQw4w9WgXcQ>")
+                await ctx.send(mg)
+        else:
+            print(mg)
+            file = discord.File("magic.png", filename="magic.png")
+            await ctx.send("Where is Lary?", file=file)
 
     @commands.command(name="Kill_him", pass_context=True)
     async def kh(self, ctx, number : int):
         if (str(ctx.message.author) == self.admin):
             await ctx.channel.purge(limit=number+1)
         else:
-            await ctx.send("<https://www.youtube.com/watch?v=dQw4w9WgXcQ>")
+            file = discord.File("magic.png", filename="magic.png")
+            await ctx.send("Where is Lary?", file=file)
 
 
     @commands.command(name="clean_up", help="Clears a specified amount of messages")
-    async def clean_up(self, ctx, arg):
-        #extract the amount to clear
-        amount = 5
-        try:
-            amount = int(arg)
-        except Exception: pass
+    async def clean_up(self, ctx, arg : int):
+        if (str(ctx.message.author) == self.admin):
+            arg = arg + 1
+            await ctx.channel.purge(limit=arg)
+        else:
+            file = discord.File("magic.png", filename="magic.png")
+            await ctx.send("Where is Lary?", file=file)
 
-        await ctx.channel.purge(limit=amount)
-
-    @commands.command(name="test")  # This must be exactly the name of the appropriate role
-    async def addrole(self, ctx, arg):
-        id = 743922728901279774
-        name = "✧ Administrator  ✧"
-        #test = "TEST"
-        #test_id = 797464470980263957
-
-        member = ctx.message.author
-        var = discord.utils.get(ctx.message.guild.roles, id=arg)
-        await member.add_roles(var)
+    @commands.command(name="only_pic", aliases=['op'], help="Clears chanel from non pictures")
+    async def clear_pic(self, ctx):
+        await ctx.message.delete()
+        mgs = []
+        i = 0
+        async for x in ctx.message.channel.history():
+            i+=1
+            if not x.attachments:
+                await x.delete()
+                await asyncio.sleep(0.6)
+            print(i)
+        print("done")
