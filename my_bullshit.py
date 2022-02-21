@@ -104,3 +104,7 @@ class Meme(commands.Cog):
                 await ctx.send(guild.name)
                 link = await channel.create_invite(max_age=300)
                 await ctx.send("Here is an instant invite to your server: " + link.url)
+
+    @commands.command(name="ram", help="Sends you free ram", pass_context=True)
+    async def ram(self, ctx, arg, *args):
+        await ctx.send("https://downloadmoreram.com/")
