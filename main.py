@@ -44,4 +44,3 @@ client.add_cog(Events(client))
 
 
 client.run(TOKEN)
-

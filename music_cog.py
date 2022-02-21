@@ -195,6 +195,8 @@ class music_cog(commands.Cog):
     @commands.command(name="clear", help="Clears queue")
     async def clear(self, ctx):
         self.music_queue.clear()
+        self.vc.stop()
+        await self.play_music()
 
     @commands.command(name="pause", help="Pauses currently playing song")
     async def pause(self, ctx):
