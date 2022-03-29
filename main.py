@@ -36,7 +36,7 @@ client.add_cog(General(client))
 # client.add_cog(music_cog(client))
 client.add_cog(Meme(client))
 
-client.add_cog(Music(client))
+#client.add_cog(Music(client))
 
 client.add_cog(Events(client))
 
