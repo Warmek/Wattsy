@@ -181,7 +181,7 @@ class music_cog(commands.Cog):
 
         if len(args) == 0:
             args[0]==1
-        for i in args[0] + 1:
+        for i in args[0]:
             if self.vc != "" and self.vc:
                 self.vc.stop()
                 #try to play next in the queue if it exists
