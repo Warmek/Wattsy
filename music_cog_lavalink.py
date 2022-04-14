@@ -253,5 +253,5 @@ class Music(commands.Cog):
         await ctx.send("Cleared")
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
         arg = len(player.queue)
-        for i in range(arg):
+        for i in range(arg + 1):
             await player.skip()
