@@ -244,8 +244,9 @@ class Music(commands.Cog):
     @commands.command(name="current", help="show currently playing song")
     async def current(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
+        embed = discord.Embed(title=player.current.title, url=f"https://youtube.com/watch?v={player.current.identifier}")
 
-        await ctx.send("Curently playing: " + player.current)
+        await ctx.send(embed=embed)
 
     @commands.command(name="clear", aliases=['clr'], help="clears queue")
     async def clear(self, ctx):
