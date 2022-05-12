@@ -244,7 +244,8 @@ class Music(commands.Cog):
     @commands.command(name="current", help="show currently playing song")
     async def current(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
-        embed = discord.Embed(title=player.current.title, url=f"https://youtube.com/watch?v={player.current.identifier}")
+        embed = discord.Embed(title=player.current.title, url=f"https://youtube.com/watch?v={player.current.identifier}", color=discord.Color.blurple())
+
 
         await ctx.send(embed=embed)
 
