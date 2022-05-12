@@ -223,14 +223,14 @@ class Music(commands.Cog):
 
         await player.set_pause(not(player.paused))
 
-        await ctx.send("Paused = " + str(player.shuffle))
+        await ctx.send("Paused = " + str(player.paused))
 
 
     @commands.command(name="shuffle", aliases=['sf'],help="Shuffles queue")
     async def shuffle(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
-        player.shuffle = not(player.shuffle)
+        player.shuffle = not player.shuffle
 
         await ctx.send("Shuffle = " + str(player.shuffle))
 
@@ -238,8 +238,8 @@ class Music(commands.Cog):
     async def loop(self, ctx):
         player = self.bot.lavalink.player_manager.get(ctx.guild.id)
 
-        player.repeat = not (player.repeat)
-        await ctx.send("Loop = " + str(player.shuffle))
+        player.repeat = not player.repeat
+        await ctx.send("Loop = " + str(player.repeat))
 
     @commands.command(name="current", help="show currently playing song")
     async def current(self, ctx):
