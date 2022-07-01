@@ -108,3 +108,9 @@ class Meme(commands.Cog):
     @commands.command(name="ram", help="Sends you free ram", pass_context=True)
     async def ram(self, ctx, arg, *args):
         await ctx.send("https://downloadmoreram.com/")
+
+    @commands.command()
+    async def perm(self, ctx, channel: discord.VoiceChannel):
+        await channel.set_permissions(ctx.guild.default_role, connect=True, speak=True)
+
+        print("Done")
